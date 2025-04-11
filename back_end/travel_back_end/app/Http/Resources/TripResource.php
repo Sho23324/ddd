@@ -16,6 +16,12 @@ class TripResource extends JsonResource
     {
         return [
             'title'=> $this->title,
+            'description'=>$this->description,
+            'price'=>$this->price,
+            'duration_days'=>$this->duration_days,
+            'start_date'=>$this->start_date,
+            'end_data'=> $this->end_date,
+            'image_url'=>asset('image/'. $this->image_url)
         ];
     }
 }

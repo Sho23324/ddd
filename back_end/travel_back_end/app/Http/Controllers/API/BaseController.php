@@ -13,7 +13,7 @@ class BaseController extends Controller
             'success'=> true,
             'message'=> $message,
             'code'=> $code
-        ]; 
+        ];
 
         return response()->json($result, $code);
     }
@@ -24,6 +24,6 @@ class BaseController extends Controller
             'success'=>false,
             'code'=> $code
         ];
-        return respose()->json($error, $code);
+        return response()->json($error, $code);
     }
 }

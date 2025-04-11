@@ -3,16 +3,31 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
+use App\Repositories\User\UserRepositoryInterface;
+use Exception;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class UserController extends BaseController
 {
     /**
      * Display a listing of the resource.
      */
+    private $userRepository;
+    public function __construct(UserRepositoryInterface $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
     public function index()
     {
+        try {
+            $users = $this->userRepository->index();
+            $data = UserResource::collection($users);
+            return $this->success($data, "users retrieved successfully", 200);
 
+        }catch(Exception $e) {
+            return $this->error($e->getMessage() ? $e->getMessage() : "Something Went Wrong", 500);
+        }
     }
 
     /**

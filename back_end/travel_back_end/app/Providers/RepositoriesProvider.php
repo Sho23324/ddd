@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Repositories\Trip\TripRepository;
+use App\Repositories\Trip\TripRepositoryInterface;
+use App\Repositories\User\UserRepository;
+use App\Repositories\User\UserRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoriesProvider extends ServiceProvider
@@ -19,6 +23,7 @@ class RepositoriesProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->app->singleton(UserRepository::class, UserRepositoryInterface::class);
+        $this->app->singleton(UserRepositoryInterface::class, UserRepository::class);
+        $this->app->singleton(TripRepositoryInterface::class, TripRepository::class);
     }
 }

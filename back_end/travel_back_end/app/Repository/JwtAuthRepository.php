@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
-class JwtAuthRepository implements JwtAuthRepositoryInterface{
+class JwtAuthRepository  implements JwtAuthRepositoryInterface{
     public function register(Request $request)
     {
         $request->validate(([
@@ -15,6 +15,8 @@ class JwtAuthRepository implements JwtAuthRepositoryInterface{
             'email'=>'required',
             'password'=>'required'
         ]));
+
+       
 
         $user = User::create([
             'name'=>$request->name,

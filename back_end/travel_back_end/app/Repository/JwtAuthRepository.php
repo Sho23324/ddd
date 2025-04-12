@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
-class jwtAuthRepository  implements JwtAuthRepositoryInterface{
+class JwtAuthRepository implements JwtAuthRepositoryInterface{
     public function register(Request $request)
     {
         $request->validate(([

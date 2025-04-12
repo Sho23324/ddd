@@ -14,6 +14,8 @@ use App\Repositories\Trip\TripRepository;
 use App\Repositories\Trip\TripRepositoryInterface;
 use App\Repositories\User\UserRepository;
 use App\Repositories\User\UserRepositoryInterface;
+use App\Repository\JwtAuthRepository;
+use App\Repository\JwtAuthRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoriesProvider extends ServiceProvider
@@ -37,5 +39,6 @@ class RepositoriesProvider extends ServiceProvider
         $this->app->singleton(RestaurantRepositoryInterface::class, RestaurantRepository::class);
         $this->app->singleton(PackageRepositoryInterface::class, PackageRepository::class);
         $this->app->singleton(TransportationRepositoryInterface::class, TransportationRepository::class);
+        $this->app->singleton(JwtAuthRepositoryInterface::class,JwtAuthRepository::class);
     }
 }

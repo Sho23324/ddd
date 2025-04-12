@@ -1,23 +1,17 @@
 <?php
 
-<<<<<<< HEAD
 use App\Http\Controllers\API\HotelController;
 use App\Http\Controllers\API\PackageController;
 use App\Http\Controllers\API\RestaurantController;
 use App\Http\Controllers\API\TransportationController;
 use App\Http\Controllers\API\TripController;
 use App\Http\Controllers\API\UserController;
-=======
 
 use App\Http\Controllers\jwtAuthController;
-use App\Http\Controllers\API\TripController;
-use App\Http\Controllers\API\UserController;
 
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Route;
-
-
 
 
 Route::post('/register',[jwtAuthController::class,'register']);

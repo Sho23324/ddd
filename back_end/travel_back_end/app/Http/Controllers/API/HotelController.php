@@ -3,16 +3,25 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\HotelResource;
+use App\Repositories\Hotel\HotelRepositoryInterface;
 use Illuminate\Http\Request;
 
-class HotelController extends Controller
+class HotelController extends BaseController
 {
     /**
      * Display a listing of the resource.
      */
+    private $hotelRepository;
+    public function __construct(HotelRepositoryInterface $hotelRepository)
+    {
+        $this->hotelRepository = $hotelRepository;
+    }
     public function index()
     {
-        //
+        $hotels = $this->hotelRepository->index();
+        $data = HotelResource::collection($hotels);
+        return $this->success($data, "Hotels retrieved successfully", 200);
     }
 
     /**
@@ -28,7 +37,9 @@ class HotelController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $hotel = $this->hotelRepository->show($id);
+        $data = new HotelResource($hotel);
+        return $this->success($data, "Hotel details", 200);
     }
 
     /**

@@ -2,6 +2,14 @@
 
 namespace App\Providers;
 
+use App\Repositories\Hotel\HotelRepository;
+use App\Repositories\Hotel\HotelRepositoryInterface;
+use App\Repositories\Package\PackageRepository;
+use App\Repositories\Package\PackageRepositoryInterface;
+use App\Repositories\Restaurant\RestaurantRepository;
+use App\Repositories\Restaurant\RestaurantRepositoryInterface;
+use App\Repositories\Transportation\TransportationRepository;
+use App\Repositories\Transportation\TransportationRepositoryInterface;
 use App\Repositories\Trip\TripRepository;
 use App\Repositories\Trip\TripRepositoryInterface;
 use App\Repositories\User\UserRepository;
@@ -25,5 +33,9 @@ class RepositoriesProvider extends ServiceProvider
     {
         $this->app->singleton(UserRepositoryInterface::class, UserRepository::class);
         $this->app->singleton(TripRepositoryInterface::class, TripRepository::class);
+        $this->app->singleton(HotelRepositoryInterface::class, HotelRepository::class);
+        $this->app->singleton(RestaurantRepositoryInterface::class, RestaurantRepository::class);
+        $this->app->singleton(PackageRepositoryInterface::class, PackageRepository::class);
+        $this->app->singleton(TransportationRepositoryInterface::class, TransportationRepository::class);
     }
 }

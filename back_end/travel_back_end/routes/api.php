@@ -8,7 +8,7 @@ use App\Http\Controllers\API\TripController;
 use App\Http\Controllers\API\UserController;
 
 use App\Http\Controllers\jwtAuthController;
-
+use App\Http\Controllers\RoleController;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Route;
@@ -16,8 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/register',[jwtAuthController::class,'register']);
 Route::post('/login',[jwtAuthController::class,'login']);
-
+Route::get('/roles',[RoleController::class,'index']);
 Route::middleware("auth:api")->group(function(){
+   
     Route::get('getUser',[jwtAuthController::class,'getUser']);
     Route::post('logout',[jwtAuthController::class,'logout']);
 });

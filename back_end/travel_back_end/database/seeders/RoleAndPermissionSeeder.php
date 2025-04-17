@@ -13,22 +13,24 @@ class RoleAndPermissionSeeder extends Seeder
      * Run the database seeds.
      */
     public function run(): void
-    {
-        $admin = Role::firstOrCreate(['name'=>'admin','guard_name'=>'api']);
-        $guest = Role::firstOrCreate(['name'=>'guest','guard_name'=>'api']);
+{
+    // Create roles
+    $admin = Role::firstOrCreate(['name' => 'admin', 'guard_name' => 'api']);
+    $guest = Role::firstOrCreate(['name' => 'guest', 'guard_name' => 'api']);
 
-        $permissions = [
-            'admin','guest'
-        ];
+    // Define permissions
+    $permissions = ['admin', 'guest'];
 
-        foreach ($permissions as $permission) {
-            Permission::firstOrCreate(['name'=>$permission,'guard_name'=>'api']);
-        }
-
-        $admin->syncPermissions($permissions);
-
-        $guest->syncPermissions('guest');
+    // Create permissions
+    foreach ($permissions as $permission) {
+        Permission::firstOrCreate(['name' => $permission, 'guard_name' => 'api']);
     }
+
+    // Assign permissions to roles
+    $admin->syncPermissions($permissions);       // admin gets both
+    $guest->syncPermissions(['guest']);          // guest gets only guest
+}
+
 
    
 }

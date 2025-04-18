@@ -3,16 +3,27 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\BookingResource;
+use App\Repositories\Booking\BookingRepositoryInterface;
 use Illuminate\Http\Request;
 
-class BookingController extends Controller
+class BookingController extends BaseController
 {
     /**
      * Display a listing of the resource.
      */
+    private $bookingRepository;
+
+    public function __construct(BookingRepositoryInterface $bookingRepository)
+    {
+        $this->bookingRepository = $bookingRepository;
+    }
+
     public function index()
     {
-        //
+        $bookings = $this->bookingRepository->index();
+        $data = BookingResource::collection($bookings);
+        return $this->success($data, "", 200);
     }
 
     /**

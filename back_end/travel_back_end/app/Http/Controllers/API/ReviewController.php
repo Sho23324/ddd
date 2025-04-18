@@ -3,28 +3,28 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\DestinationResource;
-use App\Repositories\Destination\DestinationRepositoryInterface;
+use App\Http\Resources\ReviewResource;
+use App\Repositories\Review\ReviewRepositoryInterface;
 use Exception;
 use Illuminate\Http\Request;
 
-class DestinationController extends BaseController
+class ReviewController extends BaseController
 {
     /**
      * Display a listing of the resource.
      */
-    private $destinationRepository;
+    private $reviewRepository;
 
-    public function __construct(DestinationRepositoryInterface $destinationRepository)
+    public function __construct(ReviewRepositoryInterface $reviewRepository)
     {
-        $this->destinationRepository = $destinationRepository;
+        $this->reviewRepository = $reviewRepository;
     }
 
     public function index()
     {
-        $destinations = $this->destinationRepository->index();
-        $data = DestinationResource::collection($destinations);
-        return $this->success($data, "Destinations retrieved successfully", 200);
+        $reviews = $this->reviewRepository->index();
+        $data = ReviewResource::collection($reviews);
+        return $this->success($data, "Reviews retrieved successfully", 200);
     }
 
     /**
@@ -41,9 +41,9 @@ class DestinationController extends BaseController
     public function show(string $id)
     {
         try {
-            $destination = $this->destinationRepository->show($id);
-            $data = new DestinationResource($destination);
-            return $this->success($data, "Destinations retrieved successfully", 200);
+            $review = $this->reviewRepository->show($id);
+            $data = new ReviewResource($review);
+            return $this->success($data, "Reviews details", 200);
         }catch(Exception $e) {
             return $this->error($e->getMessage() ? $e->getMessage() : "Something Went Wrong", 500);
         }

@@ -44,26 +44,26 @@ export default function NavBar() {
     return () => window.removeEventListener("storage", handleStorage);
   }, []);
 
-  // Manual logout
-  const handleLogout = async () => {
-    const token = localStorage.getItem("token");
+  // // Manual logout
+  // const handleLogout = async () => {
+  //   const token = localStorage.getItem("token");
 
-    try {
-      await fetch("http://127.0.0.1:8000/api/logout", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          Accept: "application/json",
-        },
-      });
-    } catch (err) {
-      console.error("Logout failed", err);
-    } finally {
-      localStorage.removeItem("token");
-      setUser(null);
-      router.push("/login");
-    }
-  };
+  //   try {
+  //     await fetch("http://127.0.0.1:8000/api/logout", {
+  //       method: "POST",
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //         Accept: "application/json",
+  //       },
+  //     });
+  //   } catch (err) {
+  //     console.error("Logout failed", err);
+  //   } finally {
+  //     localStorage.removeItem("token");
+  //     setUser(null);
+  //     router.push("/login");
+  //   }
+  // };
 
   return (
     <div className="bg-green-400 flex justify-between p-4">
@@ -90,19 +90,19 @@ export default function NavBar() {
               </div>
               <span className="hidden sm:block">{user.name}</span>
             </Link>
-            <button
+            {/* <button
               onClick={handleLogout}
               className="text-white border-2 border-white rounded-2xl px-4 py-1 hover:bg-white hover:text-black"
             >
               Logout
-            </button>
+            </button> */}
           </div>
         ) : (
           <Link
             href="/login"
             className="border-[2px] border-white rounded-2xl p-2 text-white hover:bg-white hover:text-black"
           >
-            Create account
+            Login / Sign Up
           </Link>
         )}
       </div>

@@ -16,7 +16,7 @@ export default function Login() {
 
   const router = useRouter();
   const searchParams = useSearchParams();
-  const redirectTo = searchParams.get("redirect") || "/hotels";
+  const redirectTo = searchParams.get("redirect") || "/dashboard";
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -47,7 +47,6 @@ export default function Login() {
     }
 
     setLoading(false);
-   
   };
 
   return (
